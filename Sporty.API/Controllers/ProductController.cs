@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Sporty.API.Classes.QueryParameters;
 using Sporty.Domain.Entities;
 using Sporty.Infrastructure.Data;
 
@@ -23,8 +24,14 @@ namespace Sporty.API.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetProducts() {
-            return Ok(await this.context.Products.ToArrayAsync());
+        public async Task<IActionResult> GetProducts([FromQuery] QueryParameters query) {
+
+            IQueryable<Product> products = this.context.Products;
+
+            products = products.Skip(query.Size * (query.Page - 1))
+                        .Take(query.Size);
+
+            return Ok(await products.ToArrayAsync());
         }
 
         [HttpGet("{id}")]
