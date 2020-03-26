@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Sporty.API.Classes.Parameters;
 using Sporty.Domain.Entities;
 using Sporty.Infrastructure.Data;
+using Sporty.Infrastructure.Data.Extensions;
 
 namespace Sporty.API.Controllers
 {
@@ -36,6 +37,19 @@ namespace Sporty.API.Controllers
             if(!string.IsNullOrEmpty(query.Sku))
             {
                 products = products.Where(p => p.Sku.Equals(query.Sku));
+            }
+
+            if (!string.IsNullOrEmpty(query.Name))
+            {
+                products = products.Where(p => p.Name.ToLower().Contains(query.Name.ToLower()));
+            }
+
+            if(!string.IsNullOrEmpty(query.SortBy))
+            {
+                if(typeof(Product).GetProperty(query.SortBy) != null)
+                {
+                    products = products.OrderByCustom(query.SortBy,query.SortOrder);
+                }
             }
 
             products = products.Skip(query.Size * (query.Page - 1))

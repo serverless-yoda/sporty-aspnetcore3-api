@@ -23,5 +23,22 @@ namespace Sporty.API.Classes.Parameters
                 _size = Math.Min(_maxSize, value);
             }
         }
+
+        public string SortBy { get; set; } = "Id";
+
+        private string _sortOrder = "asc";
+        public string SortOrder { 
+            get {
+                return _sortOrder;
+            }
+ 
+            set {
+                if(value.ToLower().Equals("asc") || value.ToLower().Equals("desc"))
+                {
+                    _sortOrder = value;
+                }
+            } 
+        
+        }
     }
 }
