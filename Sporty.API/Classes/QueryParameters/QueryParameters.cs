@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sporty.API.Classes.QueryParameters
+namespace Sporty.API.Classes.Parameters
 {
     public class QueryParameters
     {

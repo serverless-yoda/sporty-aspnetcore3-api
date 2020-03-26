@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Sporty.API.Classes.QueryParameters;
+using Sporty.API.Classes.Parameters;
 using Sporty.Domain.Entities;
 using Sporty.Infrastructure.Data;
 
@@ -24,9 +24,19 @@ namespace Sporty.API.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetProducts([FromQuery] QueryParameters query) {
+        public async Task<IActionResult> GetProducts([FromQuery] ProductFilterParameters query) {
 
             IQueryable<Product> products = this.context.Products;
+
+            if(query.MaxPrice != null && query.MinPrice != null)
+            {
+                products = products.Where(p => p.Price >= query.MinPrice && p.Price <= query.MaxPrice);
+            }
+
+            if(!string.IsNullOrEmpty(query.Sku))
+            {
+                products = products.Where(p => p.Sku.Equals(query.Sku));
+            }
 
             products = products.Skip(query.Size * (query.Page - 1))
                         .Take(query.Size);
