@@ -68,5 +68,45 @@ namespace Sporty.API.Controllers
             }
             return Ok(product);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct([FromBody] Product product) 
+        { 
+           
+                this.context.Products.Add(product);
+                await this.context.SaveChangesAsync();
+
+            return CreatedAtAction(
+                nameof(GetProduct),
+                new { id = product.Id },
+                product);
+           
+        }
+
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> PutProduct([FromRoute] int id, [FromBody] Product product) {
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+            this.context.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                await this.context.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if(this.context.Products.Find(id) == null)
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return NoContent();
+        }
     }
 }
