@@ -14,6 +14,7 @@ namespace Sporty.API.Controllers
 {
     [ApiVersion("1.0")]
     [Route("v{v:apiVersion}/products")]
+    //[Route("products")] -- this is for using HttpHeader versioning
     [ApiController]
     public class ProductController : ControllerBase
     {
