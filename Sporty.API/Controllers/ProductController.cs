@@ -108,5 +108,16 @@ namespace Sporty.API.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Product>> DeleteProduct(int id) {
+            var product = await this.context.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            this.context.Products.Remove(product);
+            await this.context.SaveChangesAsync();
+
+            return product;
+        }
     }
 }
