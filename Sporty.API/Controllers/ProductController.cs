@@ -12,7 +12,8 @@ using Sporty.Infrastructure.Data.Extensions;
 
 namespace Sporty.API.Controllers
 {
-    [Route("[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{v:apiVersion}/products")]
     [ApiController]
     public class ProductController : ControllerBase
     {

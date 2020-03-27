@@ -34,6 +34,14 @@ namespace Sporty.API
                 //supress ModelState.IsValid
                 //option.SuppressModelStateInvalidFilter = true;
             });
+
+            //add versioning
+            services.AddApiVersioning(option =>
+            {
+                option.ReportApiVersions = true;
+                option.DefaultApiVersion = new ApiVersion(1, 0);
+                option.AssumeDefaultVersionWhenUnspecified = true;
+            });
            
         }
 

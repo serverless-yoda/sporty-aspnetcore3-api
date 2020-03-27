@@ -20,7 +20,7 @@
     "Sporty.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "product",
+      "launchUrl": "v1.0/products",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
