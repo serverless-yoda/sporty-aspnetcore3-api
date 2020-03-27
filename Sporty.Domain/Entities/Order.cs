@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -9,6 +10,8 @@ namespace Sporty.Domain.Entities
     {
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
+
+        [Required]
         public int UserId { get; set; }
 
         [JsonIgnore]
