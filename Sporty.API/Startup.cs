@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
+
+
 using Sporty.Infrastructure.Data;
 
 namespace Sporty.API
@@ -46,6 +42,17 @@ namespace Sporty.API
                 //using HttpHeader versioning
                 //option.ApiVersionReader = new HeaderApiVersionReader("X-API-Version")
             });
+
+            //cors sample builder template
+            //services.AddCors(option =>
+            //{
+            //    option.AddDefaultPolicy(builder =>
+            //    {
+            //        builder.WithOrigins("<put https link here>")
+            //        .AllowAnyHeader()
+            //        .AllowAnyMethod();
+            //    });
+            //});
            
         }
 
@@ -60,6 +67,7 @@ namespace Sporty.API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+            //app.UseCors()
 
             app.UseAuthorization();
 
@@ -67,6 +75,10 @@ namespace Sporty.API
             {
                 endpoints.MapControllers();
             });
+
+            
+            
+
         }
     }
 }
