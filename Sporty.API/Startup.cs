@@ -31,6 +31,14 @@ namespace Sporty.API
                 //supress ModelState.IsValid
                 //option.SuppressModelStateInvalidFilter = true;
             });
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    //taken from IdentityProvider
+                    options.Authority = "http://localhost:51783";
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "sporty-api";
+                });
 
             //add versioning
             services.AddApiVersioning(option =>
@@ -69,6 +77,7 @@ namespace Sporty.API
             app.UseRouting();
             //app.UseCors()
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

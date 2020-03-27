@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace Sporty.API.Controllers
     [Route("v{v:apiVersion}/products")]
     //[Route("products")] -- this is for using HttpHeader versioning
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly SportyContext context;
