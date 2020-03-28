@@ -12,8 +12,4 @@
     <ProjectReference Include="..\Sporty.Domain\Sporty.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

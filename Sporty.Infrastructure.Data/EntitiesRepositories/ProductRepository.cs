@@ -1,6 +1,7 @@
 ﻿using Sporty.Domain.Entities;
 using Sporty.Domain.Interfaces;
 using Sporty.Domain.IRepository;
+using Sporty.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;

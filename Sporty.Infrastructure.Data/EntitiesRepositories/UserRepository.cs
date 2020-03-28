@@ -1,15 +1,16 @@
 ﻿using Sporty.Domain.Entities;
 using Sporty.Domain.Interfaces;
 using Sporty.Domain.IRepository;
+using Sporty.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Sporty.Domain.EntitiesRepositories
 {
-    public class CategoryRepository :  Repository<Category>, ICategoryRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
-        public void Update(Category category)
+        public void Update(User user)
         {
             throw new NotImplementedException();
         }
