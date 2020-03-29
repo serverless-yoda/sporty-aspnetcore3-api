@@ -39,7 +39,7 @@ namespace Sporty.Infrastructure.Repository
             }
 
             
-            if(string.IsNullOrEmpty(includeFields))
+            if(!string.IsNullOrEmpty(includeFields))
             {
                 foreach(string field in includeFields.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries))
                 {

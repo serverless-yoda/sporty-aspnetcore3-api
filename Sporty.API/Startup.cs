@@ -37,20 +37,21 @@ namespace Sporty.API
                 //supress ModelState.IsValid
                 //option.SuppressModelStateInvalidFilter = true;
             });
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    //taken from IdentityProvider
-                    options.Authority = "http://localhost:51783";
-                    options.RequireHttpsMetadata = false;
-                    options.Audience = "sporty-api";
-                });
+
+            //services.AddAuthentication("Bearer")
+            //    .AddJwtBearer("Bearer", options =>
+            //    {
+            //        //taken from IdentityProvider
+            //        options.Authority = "http://localhost:51783";
+            //        options.RequireHttpsMetadata = false;
+            //        options.Audience = "sporty-api";
+            //    });
 
             //add versioning
             services.AddApiVersioning(option =>
             {
                 option.ReportApiVersions = true;
-                option.DefaultApiVersion = new ApiVersion(1, 0);
+                option.DefaultApiVersion = new ApiVersion(2, 0);
                 option.AssumeDefaultVersionWhenUnspecified = true;
 
                 //using HttpHeader versioning
@@ -87,7 +88,7 @@ namespace Sporty.API
             //app.UseCors()
 
             app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

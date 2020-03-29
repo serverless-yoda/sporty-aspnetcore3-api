@@ -18,7 +18,7 @@ namespace Sporty.API.Controllers
     [Route("v{v:apiVersion}/products")]
     //[Route("products")] -- this is for using HttpHeader versioning
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ProductV1Controller : ControllerBase
     {
         private readonly SportyContext context;
@@ -129,11 +129,72 @@ namespace Sporty.API.Controllers
     [ApiVersion("2.0")]
     [Route("v{v:apiVersion}/products")]
     [ApiController]
-    public class ProductV2Controller: ControllerBase
+    public class ProductV2Controller : ControllerBase
     {
+        private readonly IUnitOfWork uow;
+
+
         public ProductV2Controller(IUnitOfWork uow)
         {
+            this.uow = uow;
+        }
 
+        [HttpGet()]
+        public IActionResult GetProducts() {
+            var fromDb = uow.Product.GetAll();
+            return Ok(fromDb);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var fromDb = uow.Product.Get(id);
+            return Ok(fromDb);
+        }
+
+        [HttpPost()]
+        public IActionResult PostProduct([FromBody] Product product)
+        {
+            uow.Product.Add(product);
+            uow.Save();
+
+            //return CreatedAtAction(nameof(GetProduct), new { id = product.Id, version = ApiVersion.Parse("2.0").ToString() }, product);
+            return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutProduct([FromRoute]int id, [FromBody] Product product) {
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                uow.Product.Update(product);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (uow.Product.Get(id) == null)
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Product> DeleteProduct([FromRoute] int id){
+            var product = uow.Product.Get(id);
+            if (product == null) return NotFound();
+
+            uow.Product.Remove(product);
+            uow.Save();
+
+            return product;
         }
     }
 }
