@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sporty.Infrastructure.IdentityProvider.Console", "Sporty.Infrastructure.IdentityProvider.Console\Sporty.Infrastructure.IdentityProvider.Console.csproj", "{0D2FBDA4-FB21-4619-998F-EE3F60AC0382}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.IoC", "Infrastructure.IoC", "{E1777F32-BC8B-4770-B780-267696BE473D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sporty.Infrastructure.IoC", "Sporty.Infrastructure.IoC\Sporty.Infrastructure.IoC.csproj", "{32BEC678-8AD3-4EE1-A3EB-E88F54139D15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{0D2FBDA4-FB21-4619-998F-EE3F60AC0382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D2FBDA4-FB21-4619-998F-EE3F60AC0382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D2FBDA4-FB21-4619-998F-EE3F60AC0382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32BEC678-8AD3-4EE1-A3EB-E88F54139D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32BEC678-8AD3-4EE1-A3EB-E88F54139D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32BEC678-8AD3-4EE1-A3EB-E88F54139D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32BEC678-8AD3-4EE1-A3EB-E88F54139D15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{5F43A411-22AA-4D04-82E5-D2426A7F619B} = {B004084A-14D2-4CB1-82A3-5B29C6664F85}
 		{7379A203-AC9A-4F0B-A558-ACA84EF6735E} = {58DF04C0-D184-4F52-9444-9E372DD68E08}
 		{0D2FBDA4-FB21-4619-998F-EE3F60AC0382} = {87611728-9C8D-4C87-8F88-97D33D7E2E89}
+		{32BEC678-8AD3-4EE1-A3EB-E88F54139D15} = {E1777F32-BC8B-4770-B780-267696BE473D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0082297A-F045-41C1-AF1C-7D2D76C9EAB9}
