@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sporty.API.Classes.Parameters;
 using Sporty.Domain.Entities;
+using Sporty.Domain.IUnitOfWork;
 using Sporty.Infrastructure.Data;
 using Sporty.Infrastructure.Data.Extensions;
 
@@ -18,11 +19,11 @@ namespace Sporty.API.Controllers
     //[Route("products")] -- this is for using HttpHeader versioning
     [ApiController]
     [Authorize]
-    public class ProductController : ControllerBase
+    public class ProductV1Controller : ControllerBase
     {
         private readonly SportyContext context;
 
-        public ProductController(SportyContext context)
+        public ProductV1Controller(SportyContext context)
         {
             this.context = context;
             this.context.Database.EnsureCreated();
@@ -122,6 +123,17 @@ namespace Sporty.API.Controllers
             await this.context.SaveChangesAsync();
 
             return product;
+        }
+    }
+
+    [ApiVersion("2.0")]
+    [Route("v{v:apiVersion}/products")]
+    [ApiController]
+    public class ProductV2Controller: ControllerBase
+    {
+        public ProductV2Controller(IUnitOfWork uow)
+        {
+
         }
     }
 }
