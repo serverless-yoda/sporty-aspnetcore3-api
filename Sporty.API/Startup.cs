@@ -9,11 +9,17 @@ using Microsoft.Extensions.Hosting;
 
 
 using Sporty.Infrastructure.Data;
+using Sporty.Infrastructure.IoC;
 
 namespace Sporty.API
 {
     public class Startup
     {
+
+        public static void RegisterServices(IServiceCollection services)
+        {
+            DIContainer.RegisterServices(services);
+        }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -61,7 +67,10 @@ namespace Sporty.API
             //        .AllowAnyMethod();
             //    });
             //});
-           
+
+
+            //DIContainer
+            RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

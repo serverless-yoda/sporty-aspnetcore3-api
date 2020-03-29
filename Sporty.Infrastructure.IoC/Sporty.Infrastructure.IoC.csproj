@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sporty.Infrastructure.Data\Sporty.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
 </Project>

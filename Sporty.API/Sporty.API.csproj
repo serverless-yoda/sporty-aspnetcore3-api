@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sporty.Infrastructure.Data\Sporty.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Sporty.Infrastructure.IoC\Sporty.Infrastructure.IoC.csproj" />
   </ItemGroup>
 
 
