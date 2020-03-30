@@ -18,6 +18,8 @@ namespace Sporty.Infrastructure.Data.Repositories
             Product = new ProductRepository(db);
             Order = new OrderRepository(db);
             User = new UserRepository(db);
+
+            this.db.Database.EnsureCreated();
         }
         public ICategoryRepository Category  { get; private set;}
 

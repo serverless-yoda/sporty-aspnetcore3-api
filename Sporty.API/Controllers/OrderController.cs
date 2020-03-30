@@ -12,55 +12,55 @@ namespace Sporty.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly IUnitOfWork uow;
 
 
-        public CategoryController(IUnitOfWork uow)
+        public OrderController(IUnitOfWork uow)
         {
             this.uow = uow;
         }
 
         [HttpGet()]
-        public IActionResult GetCategories()
+        public IActionResult GetOrders()
         {
-            var fromDb = uow.Category.GetAll();
+            var fromDb = uow.Order.GetAll();
             return Ok(fromDb);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCategory(int id)
+        public IActionResult GetOrder(int id)
         {
-            var fromDb = uow.Category.Get(id);
+            var fromDb = uow.Order.Get(id);
             return Ok(fromDb);
         }
 
         [HttpPost()]
-        public IActionResult PostCategory([FromBody] Category category)
+        public IActionResult PostOrder([FromBody] Order order)
         {
-            uow.Category.Add(category);
+            uow.Order.Add(order);
             uow.Save();
 
-            return CreatedAtAction(nameof(GetCategory), new { id = category.Id,  }, category);
-            //return Ok(category);
+            return CreatedAtAction(nameof(GetOrder), new { id = order.Id, }, order);
+            //return Ok(Order);
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCategory([FromRoute]int id, [FromBody] Category Category)
+        public IActionResult PutOrder([FromRoute]int id, [FromBody] Order order)
         {
-            if (id != Category.Id)
+            if (id != order.Id)
             {
                 return BadRequest();
             }
 
             try
             {
-                uow.Category.Update(Category);
+                uow.Order.Update(order);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (uow.Category.Get(id) == null)
+                if (uow.Order.Get(id) == null)
                 {
                     return NotFound();
                 }
@@ -72,15 +72,15 @@ namespace Sporty.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Category> DeleteCategory([FromRoute] int id)
+        public ActionResult<Order> DeleteOrder([FromRoute] int id)
         {
-            var Category = uow.Category.Get(id);
-            if (Category == null) return NotFound();
+            var order = uow.Order.Get(id);
+            if (order == null) return NotFound();
 
-            uow.Category.Remove(Category);
+            uow.Order.Remove(order);
             uow.Save();
 
-            return Category;
+            return order;
         }
     }
 
